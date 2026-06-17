@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import TurnstileWidget from './TurnstileWidget';
 
 export default function NewsletterForm() {
   const [submitting, setSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -16,7 +18,7 @@ export default function NewsletterForm() {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, turnstileToken }),
       });
 
       if (res.ok) {
@@ -43,9 +45,12 @@ export default function NewsletterForm() {
         disabled={submitting}
         className="flex-1 px-5 py-3.5 rounded-xl border-2 border-black/10 bg-[#fafaf9] focus:border-primary focus:ring-0 focus:bg-white transition-colors text-sm placeholder:text-slate-400 disabled:opacity-50 disabled:cursor-not-allowed"
       />
+      <div className="flex justify-center">
+        <TurnstileWidget onVerify={setTurnstileToken} />
+      </div>
       <button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || !turnstileToken}
         className="bg-primary text-white font-semibold px-7 py-3.5 rounded-xl hover:bg-primary/90 transition-all shadow-md shadow-primary/15 active:scale-[0.98] text-sm disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center gap-2"
       >
         {submitting && (

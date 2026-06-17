@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import TurnstileWidget from './TurnstileWidget';
 
 export default function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,7 +26,7 @@ export default function ContactForm() {
       const res = await fetch('/api/contacts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, turnstileToken }),
       });
 
       if (res.ok) {
@@ -75,9 +77,12 @@ export default function ContactForm() {
         <label htmlFor="message" className="block text-sm font-semibold text-slate-900 mb-2">Message</label>
         <textarea id="message" name="message" required rows={5} placeholder="Décrivez votre projet..." disabled={submitting} className="w-full px-4 py-3 rounded-lg border-2 border-slate-200 focus:border-primary focus:ring-0 transition-colors resize-y disabled:opacity-50 disabled:cursor-not-allowed" />
       </div>
+      <div className="flex justify-center">
+        <TurnstileWidget onVerify={setTurnstileToken} />
+      </div>
       <button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || !turnstileToken}
         className="btn-primary w-full justify-center py-3.5 text-base disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center gap-2"
       >
         {submitting && (

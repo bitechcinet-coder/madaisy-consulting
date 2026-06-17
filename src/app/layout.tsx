@@ -38,6 +38,43 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         />
         <link rel="icon" href="/logo.webp" type="image/webp" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Madaisy Consulting Agency',
+              alternateName: 'Madaisy Consulting',
+              url: 'https://madaisy-consulting.com',
+              logo: 'https://madaisy-consulting.com/logo.png',
+              description:
+                "Agence spécialisée dans l'accompagnement à la mobilité internationale étudiante vers la France. Orientation, admission, installation.",
+              foundingDate: '2024',
+              founder: {
+                '@type': 'Person',
+                name: 'Marie-Désirée Tanoh',
+              },
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'customer service',
+                telephone: '+225 07 00 00 00 00',
+                availableLanguage: ['French'],
+              },
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'CI',
+                addressLocality: 'Abidjan',
+              },
+              sameAs: [
+                'https://www.facebook.com/madaisyconsulting',
+                'https://www.instagram.com/madaisyconsulting',
+                'https://www.linkedin.com/company/madaisy-consulting',
+                'https://www.tiktok.com/@madaisyconsulting',
+              ],
+            }),
+          }}
+        />
       </head>
       <body className={`${inter.variable} font-display`}>
         <Providers>

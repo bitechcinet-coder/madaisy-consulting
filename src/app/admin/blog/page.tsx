@@ -36,6 +36,7 @@ export default function BlogAdmin() {
   const [introduction, setIntroduction] = useState('');
   const [conclusion, setConclusion] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [search, setSearch] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
 
   const load = () => {
@@ -143,6 +144,18 @@ export default function BlogAdmin() {
     setPosts((prev) => prev.map((p) => (p.id === id ? { ...p, published: !current } : p)));
   };
 
+  const filteredPosts = search.trim()
+    ? posts.filter((p) => {
+        const q = search.toLowerCase();
+        return (
+          p.title.toLowerCase().includes(q) ||
+          p.excerpt.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.author.toLowerCase().includes(q)
+        );
+      })
+    : posts;
+
   if (loading) return <div className="flex items-center justify-center py-20"><span className="material-symbols-outlined animate-spin text-3xl text-primary">progress_activity</span></div>;
 
   return (
@@ -157,7 +170,31 @@ export default function BlogAdmin() {
         </button>
       </div>
 
-      {posts.length === 0 ? (
+      {/* Search */}
+      <div className="mb-4">
+        <div className="relative">
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+          <input
+            type="text"
+            placeholder="Rechercher un article par titre, extrait, catégorie ou auteur..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-slate-200 focus:border-primary focus:ring-0 text-sm"
+          />
+          {search && (
+            <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+              <span className="material-symbols-outlined text-lg">close</span>
+            </button>
+          )}
+        </div>
+        {search && (
+          <p className="text-xs text-slate-400 mt-1.5 ml-1">
+            {filteredPosts.length} résultat{filteredPosts.length !== 1 ? 's' : ''} sur {posts.length}
+          </p>
+        )}
+      </div>
+
+      {filteredPosts.length === 0 ? (
         <div className="bg-white rounded-xl border border-slate-100 p-12 text-center">
           <span className="material-symbols-outlined text-5xl text-slate-300 mb-4 block">article</span>
           <p className="text-slate-500 mb-4">Aucun article.</p>
@@ -176,7 +213,7 @@ export default function BlogAdmin() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
-              {posts.map((post) => (
+              {filteredPosts.map((post) => (
                 <tr key={post.id} className="hover:bg-slate-50">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
