@@ -16,5 +16,11 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ['/admin/dashboard/:path*', '/admin/pages/:path*', '/admin/blog/:path*', '/admin/temoignages/:path*', '/admin/contacts/:path*'],
+  matcher: [
+    '/admin/dashboard/:path*',
+    '/admin/pages/:path*',
+    '/admin/blog/:path*',
+    '/admin/temoignages/:path*',
+    '/admin/contacts/:path*',
+  ],
 };

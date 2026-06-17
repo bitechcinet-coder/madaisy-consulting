@@ -50,7 +50,7 @@ export default function Temoignages() {
           className="bg-cover bg-center min-h-[320px] flex items-end rounded-b-2xl overflow-hidden"
           style={{
             backgroundImage:
-              'linear-gradient(0deg, rgba(35, 15, 16, 0.85) 0%, rgba(35, 15, 16, 0.2) 60%), url(https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&q=80)',
+              'linear-gradient(0deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.2) 60%), url(https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&q=80)',
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
@@ -103,10 +103,9 @@ export default function Temoignages() {
             {temoignages.map((t) => (
               <div
                 key={t.name}
-                className="flex flex-col gap-4 p-6 rounded-xl bg-white border border-primary/10 shadow-sm hover:shadow-md transition-shadow"
-              >
+                className="card p-6 flex flex-col gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="size-14 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                  <div className="size-14 rounded-full bg-primary/8 border border-primary/10 flex items-center justify-center text-primary font-semibold text-lg">
                     {t.initial}
                   </div>
                   <div>

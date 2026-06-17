@@ -108,11 +108,9 @@ export default function Services() {
               </div>
 
               {/* Contenu */}
-              <div className="card">
-                <span className="text-primary font-black text-xs tracking-[0.2em] uppercase mb-2 block">
-                  Étape {step.num}
-                </span>
-                <h3 className="text-slate-900 text-2xl font-extrabold mb-3">{step.title}</h3>
+              <div className="card p-8">
+                <span className="text-primary font-semibold text-xs tracking-[0.2em] uppercase mb-2 block">Étape {step.num}</span>
+                <h3 className="text-slate-900 text-2xl font-bold mb-3">{step.title}</h3>
                 <p className="text-slate-600 text-base leading-relaxed mb-4">{step.description}</p>
                 <ul className="space-y-2">
                   {step.checklist.map((item) => (

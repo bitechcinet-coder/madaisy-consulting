@@ -5,7 +5,9 @@ export async function GET(
   _request: Request,
   { params }: { params: { slug: string } }
 ) {
-  const post = await prisma.blogPost.findUnique({ where: { slug: params.slug } });
+  const post = await prisma.blogPost.findFirst({
+    where: { slug: params.slug, published: true },
+  });
   if (!post) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json(post);
 }

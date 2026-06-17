@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import NewsletterInline from '@/components/NewsletterInline';
 
 interface Article {
@@ -125,11 +126,14 @@ export default function BlogPage() {
                 }}
               >
                 <div className="relative overflow-hidden rounded-xl aspect-video">
-                  <div
-                    className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-                    style={{ backgroundImage: `url(${a.image})` }}
+                  <Image
+                    src={a.image}
+                    alt={a.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <span className="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase pointer-events-none">
+                  <span className="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase pointer-events-none z-10">
                     {a.category}
                   </span>
                 </div>

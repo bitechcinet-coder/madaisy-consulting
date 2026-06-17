@@ -1,7 +1,7 @@
 'use client';
 
 export default function WhatsAppButton() {
-  const phone = '+2250564489275';
+  const phone = '+2250564489275'; // +225 05 64 48 92 75
   const msg = encodeURIComponent('Bonjour, je souhaite des informations sur vos services.');
 
   return (

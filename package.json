@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma db push && tsx prisma/seed.ts && next build",
-    "vercel-build": "prisma db push && tsx prisma/seed.ts && next build",
+    "vercel-build": "sed -i 's/provider = \"sqlite\"/provider = \"postgresql\"/' prisma/schema.prisma && prisma db push && tsx prisma/seed.ts && next build",
     "start": "next start",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
