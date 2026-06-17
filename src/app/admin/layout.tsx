@@ -22,6 +22,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const closeSidebar = () => setSidebarOpen(false);
 
+  // Page login : standalone, pas de sidebar ni header
+  if (pathname === '/admin/login') {
+    return <ToastProvider>{children}</ToastProvider>;
+  }
+
   return (
     <ToastProvider>
     <div className="min-h-screen bg-slate-50 flex">
