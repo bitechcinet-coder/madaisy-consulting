@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 interface ContentSection {
   heading?: string;
@@ -37,7 +37,17 @@ export default function BlogAdmin() {
   const [conclusion, setConclusion] = useState('');
   const [uploading, setUploading] = useState(false);
   const [search, setSearch] = useState('');
+  const [toast, setToast] = useState<string | null>(null);
+  const [validationErrors, setValidationErrors] = useState<{ title?: string; slug?: string }>({});
   const fileRef = useRef<HTMLInputElement>(null);
+  const slugTouchedRef = useRef(false);
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showToast = useCallback((msg: string) => {
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    setToast(msg);
+    toastTimerRef.current = setTimeout(() => setToast(null), 3000);
+  }, []);
 
   const load = () => {
     fetch('/api/blog')
@@ -54,6 +64,8 @@ export default function BlogAdmin() {
     setContentSections([newSection()]);
     setIntroduction('');
     setConclusion('');
+    setValidationErrors({});
+    slugTouchedRef.current = false;
     setModal({ open: true, post: { title: '', slug: '', excerpt: '', category: 'Guide', author: 'Madaisy Team', content: '{}', readTime: 5, published: true } });
   };
 
@@ -63,6 +75,8 @@ export default function BlogAdmin() {
     setIntroduction(parsed.introduction || '');
     setConclusion(parsed.conclusion || '');
     setContentSections(parsed.sections?.length ? parsed.sections : [newSection()]);
+    setValidationErrors({});
+    slugTouchedRef.current = false;
     setModal({ open: true, post });
   };
 
@@ -105,7 +119,19 @@ export default function BlogAdmin() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-    const title = (form.elements.namedItem('title') as HTMLInputElement).value;
+
+    const title = (form.elements.namedItem('title') as HTMLInputElement).value.trim();
+    const slug = (form.elements.namedItem('slug') as HTMLInputElement).value.trim() || slugify(title);
+
+    // Validation
+    const errors: { title?: string; slug?: string } = {};
+    if (!title) errors.title = 'Le titre est requis';
+    if (!slug) errors.slug = 'Le slug est requis';
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+
     const content = JSON.stringify({
       introduction,
       sections: contentSections.filter((s) => s.heading || s.body || s.image),
@@ -114,7 +140,7 @@ export default function BlogAdmin() {
 
     const data: any = {
       title,
-      slug: (form.elements.namedItem('slug') as HTMLInputElement).value || slugify(title),
+      slug,
       excerpt: (form.elements.namedItem('excerpt') as HTMLInputElement).value,
       category: (form.elements.namedItem('category') as HTMLSelectElement).value,
       author: (form.elements.namedItem('author') as HTMLInputElement).value,
@@ -125,9 +151,13 @@ export default function BlogAdmin() {
     if (modal.post?.coverImage) data.coverImage = modal.post.coverImage;
 
     if (modal.post?.id) {
-      await fetch('/api/blog', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: modal.post.id, ...data }) });
+      const res = await fetch('/api/blog', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: modal.post.id, ...data }) });
+      if (res.ok) showToast('Article modifié avec succès');
+      else showToast('Erreur lors de la modification');
     } else {
-      await fetch('/api/blog', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      const res = await fetch('/api/blog', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      if (res.ok) showToast('Article créé avec succès');
+      else showToast('Erreur lors de la création');
     }
     closeModal();
     load();
@@ -135,13 +165,18 @@ export default function BlogAdmin() {
 
   const handleDelete = async (id: string) => {
     if (!confirm('Supprimer cet article définitivement ?')) return;
-    await fetch('/api/blog', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) });
+    const res = await fetch('/api/blog', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) });
+    if (res.ok) showToast('Article supprimé');
+    else showToast('Erreur lors de la suppression');
     load();
   };
 
   const togglePublish = async (id: string, current: boolean) => {
-    await fetch('/api/blog', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, published: !current }) });
-    setPosts((prev) => prev.map((p) => (p.id === id ? { ...p, published: !current } : p)));
+    const res = await fetch('/api/blog', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, published: !current }) });
+    if (res.ok) {
+      setPosts((prev) => prev.map((p) => (p.id === id ? { ...p, published: !current } : p)));
+      showToast(!current ? 'Article publié' : 'Article mis en brouillon');
+    }
   };
 
   const filteredPosts = search.trim()
@@ -160,6 +195,13 @@ export default function BlogAdmin() {
 
   return (
     <div>
+      {/* Toast notification */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-[100] bg-green-600 text-white px-5 py-3 rounded-lg shadow-lg text-sm font-medium animate-[slideDown_0.3s_ease-out]">
+          {toast}
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Blog</h1>
@@ -209,7 +251,7 @@ export default function BlogAdmin() {
                 <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase w-24">Catégorie</th>
                 <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase w-24">Statut</th>
                 <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase w-28">Date</th>
-                <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase w-28">Actions</th>
+                <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase w-36">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-50">
@@ -238,6 +280,7 @@ export default function BlogAdmin() {
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-1">
+                      <button onClick={() => window.open(`/blog/${post.slug}`, '_blank')} className="p-2 text-slate-400 hover:text-primary" title="Prévisualiser"><span className="material-symbols-outlined text-lg">preview</span></button>
                       <a href={`/blog/${post.slug}`} target="_blank" className="p-2 text-slate-400 hover:text-primary" title="Voir"><span className="material-symbols-outlined text-lg">visibility</span></a>
                       <button onClick={() => openEdit(post)} className="p-2 text-slate-400 hover:text-primary" title="Modifier"><span className="material-symbols-outlined text-lg">edit</span></button>
                       <button onClick={() => handleDelete(post.id)} className="p-2 text-slate-400 hover:text-red-600" title="Supprimer"><span className="material-symbols-outlined text-lg">delete</span></button>
@@ -264,15 +307,35 @@ export default function BlogAdmin() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-slate-900 mb-1">Titre *</label>
-                  <input name="title" required defaultValue={modal.post?.title} onChange={(e) => {
-                    const slugInput = document.querySelector<HTMLInputElement>('input[name="slug"]');
-                    if (slugInput && !modal.post?.id) slugInput.value = slugify(e.target.value);
-                  }} className="w-full px-4 py-2.5 rounded-lg border-2 border-slate-200 focus:border-primary focus:ring-0" />
+                  <label className="block text-sm font-semibold text-slate-900 mb-1">
+                    Titre <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    name="title"
+                    required
+                    defaultValue={modal.post?.title}
+                    onChange={(e) => {
+                      if (!slugTouchedRef.current) {
+                        const slugInput = document.querySelector<HTMLInputElement>('input[name="slug"]');
+                        if (slugInput) slugInput.value = slugify(e.target.value);
+                      }
+                    }}
+                    className={`w-full px-4 py-2.5 rounded-lg border-2 focus:ring-0 ${validationErrors.title ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-primary'}`}
+                  />
+                  {validationErrors.title && <p className="text-red-500 text-xs mt-1">{validationErrors.title}</p>}
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-900 mb-1">Slug *</label>
-                  <input name="slug" required defaultValue={modal.post?.slug} className="w-full px-4 py-2.5 rounded-lg border-2 border-slate-200 focus:border-primary focus:ring-0 font-mono text-sm" />
+                  <label className="block text-sm font-semibold text-slate-900 mb-1">
+                    Slug <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    name="slug"
+                    required
+                    defaultValue={modal.post?.slug}
+                    onChange={() => { slugTouchedRef.current = true; }}
+                    className={`w-full px-4 py-2.5 rounded-lg border-2 focus:ring-0 font-mono text-sm ${validationErrors.slug ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-primary'}`}
+                  />
+                  {validationErrors.slug && <p className="text-red-500 text-xs mt-1">{validationErrors.slug}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-slate-900 mb-1">Temps de lecture (min)</label>
@@ -294,7 +357,9 @@ export default function BlogAdmin() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-900 mb-1">Extrait (affiché sur la page blog)</label>
+                <label className="block text-sm font-semibold text-slate-900 mb-1">
+                  Extrait <span className="text-slate-400 font-normal text-xs">(recommandé — affiché sur la page blog)</span>
+                </label>
                 <textarea name="excerpt" rows={2} defaultValue={modal.post?.excerpt} className="w-full px-4 py-3 rounded-lg border-2 border-slate-200 focus:border-primary focus:ring-0 resize-y" />
               </div>
 

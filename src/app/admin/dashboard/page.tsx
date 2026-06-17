@@ -2,34 +2,29 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+interface Stats {
+  contacts: number;
+  contactsUnread: number;
+  blog: number;
+  blogPublished: number;
+  temoignages: number;
+  temoignagesPublished: number;
+}
+
 export default function DashboardPage() {
-  const [stats, setStats] = useState({ contacts: 0, blog: 0, temoignages: 0 });
+  const [stats, setStats] = useState<Stats>({ contacts: 0, contactsUnread: 0, blog: 0, blogPublished: 0, temoignages: 0, temoignagesPublished: 0 });
 
   useEffect(() => {
-    async function load() {
-      const [cRes, bRes, tRes] = await Promise.all([
-        fetch('/api/contacts'),
-        fetch('/api/blog'),
-        fetch('/api/temoignages'),
-      ]);
-      const [contacts, blog, temoignages] = await Promise.all([
-        cRes.json(),
-        bRes.json(),
-        tRes.json(),
-      ]);
-      setStats({
-        contacts: contacts.length || 0,
-        blog: blog.length || 0,
-        temoignages: temoignages.length || 0,
-      });
-    }
-    load();
+    fetch('/api/stats')
+      .then((r) => r.json())
+      .then((data) => setStats(data))
+      .catch(() => {});
   }, []);
 
   const cards = [
-    { label: 'Messages reçus', value: stats.contacts, icon: 'mail', href: '/admin/contacts', color: 'bg-blue-50 text-blue-600' },
-    { label: 'Articles blog', value: stats.blog, icon: 'article', href: '/admin/blog', color: 'bg-green-50 text-green-600' },
-    { label: 'Témoignages', value: stats.temoignages, icon: 'reviews', href: '/admin/temoignages', color: 'bg-amber-50 text-amber-600' },
+    { label: 'Messages reçus', value: stats.contacts, sub: stats.contactsUnread > 0 ? `${stats.contactsUnread} non lu${stats.contactsUnread > 1 ? 's' : ''}` : null, icon: 'mail', href: '/admin/contacts', color: 'bg-blue-50 text-blue-600' },
+    { label: 'Articles blog', value: stats.blog, sub: `${stats.blogPublished} publié${stats.blogPublished !== 1 ? 's' : ''}`, icon: 'article', href: '/admin/blog', color: 'bg-green-50 text-green-600' },
+    { label: 'Témoignages', value: stats.temoignages, sub: `${stats.temoignagesPublished} publié${stats.temoignagesPublished !== 1 ? 's' : ''}`, icon: 'reviews', href: '/admin/temoignages', color: 'bg-amber-50 text-amber-600' },
     { label: 'Pages', value: '—', icon: 'description', href: '/admin/pages', color: 'bg-purple-50 text-purple-600' },
   ];
 
@@ -46,6 +41,7 @@ export default function DashboardPage() {
             </div>
             <p className="text-3xl font-black text-slate-900">{c.value}</p>
             <p className="text-slate-500 text-sm mt-1">{c.label}</p>
+            {c.sub && <p className="text-slate-400 text-xs mt-0.5">{c.sub}</p>}
           </Link>
         ))}
       </div>
