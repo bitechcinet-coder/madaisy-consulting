@@ -46,7 +46,7 @@ export default function BlogPage() {
               readTime: p.readTime,
               date: new Date(p.createdAt).toLocaleDateString('fr', { day: 'numeric', month: 'short', year: 'numeric' }),
               author: p.author,
-              image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80',
+              image: p.coverImage || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80',
               slug: p.slug,
             })));
             return;
