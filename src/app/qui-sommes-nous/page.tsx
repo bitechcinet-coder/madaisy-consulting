@@ -70,7 +70,7 @@ export default function QuiSommesNous() {
 
               <div className="mt-10 flex items-center gap-5 p-5 bg-[#fafaf9] rounded-2xl">
                 <Image
-                  src="/marie-desiree-tanoh.png"
+                  src="/marie-desiree-tanoh.jpeg"
                   alt="Marie-Désirée TANOH"
                   width={72}
                   height={72}
@@ -89,7 +89,7 @@ export default function QuiSommesNous() {
               <div className="absolute -top-6 -right-6 w-28 h-28 bg-primary/5 rounded-full -z-10" />
               <div className="absolute -bottom-6 -left-6 w-36 h-36 bg-primary/5 rounded-full -z-10" />
               <Image
-                src="/marie-desiree-tanoh.png"
+                src="/marie-desiree-tanoh.jpeg"
                 alt="Marie-Désirée TANOH"
                 width={600}
                 height={450}
