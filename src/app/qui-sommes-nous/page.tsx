@@ -58,7 +58,7 @@ export default function QuiSommesNous() {
                   <span className="font-semibold text-slate-900">Marie-Désirée TANOH</span>,
                   Madaisy Consulting Agency est née d&apos;une volonté d&apos;offrir un
                   accompagnement de haute qualité aux étudiants souhaitant poursuivre leurs études
-                  en France.
+                  supérieures dans le privé en France.
                 </p>
                 <p>
                   Spécialisée dans la{' '}

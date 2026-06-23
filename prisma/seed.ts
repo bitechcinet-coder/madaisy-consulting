@@ -21,7 +21,7 @@ async function main() {
   const temoignages = [
     { name: 'Sarah M.', role: 'Master en Intelligence Artificielle — France', content: "Grâce à Madaisy, j'ai pu obtenir mon admission et mon visa en un temps record. Leur aide pour l'installation à Lyon a été cruciale pour mon intégration. Ils ont vraiment pensé à tout, du logement aux démarches administratives.", rating: 5 },
     { name: 'Kévin L.', role: 'Bachelor Business International — Canada', content: "Une équipe professionnelle et à l'écoute. Ils ne m'ont pas seulement aidé pour les papiers, ils m'ont vraiment conseillé sur le choix de mon université. Aujourd'hui je suis dans le programme de mes rêves grâce à leur orientation stratégique.", rating: 5 },
-    { name: 'Amélie R.', role: 'Médecine — Belgique', content: "Le suivi post-admission est incroyable. Madaisy m'a aidé à trouver mon logement et à ouvrir mon compte bancaire avant même mon arrivée ! Je me suis sentie épaulée à chaque étape.", rating: 5 },
+    { name: 'Amélie R.', role: 'Médecine — France', content: "Le suivi post-admission est incroyable. Madaisy m'a aidé à trouver mon logement et à gérer toutes mes formalités administratives avant même mon arrivée ! Je me suis sentie épaulée à chaque étape.", rating: 5 },
     { name: 'Jean-Paul K.', role: 'Master 2 Droit des Affaires — France', content: "Après deux refus de visa, j'étais prêt à abandonner. Madaisy Consulting a repris mon dossier de A à Z. Ils ont su identifier les failles et m'ont préparé aux entretiens. Aujourd'hui, je suis en Master 2 à Paris.", rating: 5 },
   ];
 
@@ -150,41 +150,6 @@ async function main() {
           }
         ],
         conclusion: "Étudier en France représente un investissement conséquent, mais les aides financières disponibles et la possibilité de travailler rendent ce projet accessible. Planifiez votre budget avant de partir, prévoyez une marge de sécurité, et n'hésitez pas à solliciter les aides auxquelles vous avez droit."
-      })
-    },
-    {
-      slug: 'visa-etudiant-erreurs-a-eviter',
-      title: 'Obtenir son visa étudiant France : Les 5 erreurs fatales à éviter',
-      excerpt: "Refus de visa, dossier incomplet, entretien raté... Découvrez les pièges les plus fréquents et comment les éviter pour obtenir votre précieux sésame.",
-      category: 'Administratif',
-      author: 'Madaisy Team',
-      readTime: 8,
-      coverImage: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1200&q=80',
-      content: JSON.stringify({
-        introduction: "Le refus de visa est la hantise de tout étudiant qui projette d'étudier en France. Chaque année, des milliers de dossiers sont rejetés pour des raisons qui auraient pu être évitées. Voici les 5 erreurs les plus fréquentes et nos conseils pour maximiser vos chances d'obtenir votre visa étudiant du premier coup.",
-        sections: [
-          {
-            heading: "Erreur n°1 : Un projet d'études incohérent",
-            body: ["C'est la première cause de refus. Si vous postulez à une licence de mathématiques alors que votre parcours est littéraire, ou si vous demandez trois formations sans lien entre elles, le consulat doutera de la sincérité de votre projet.", "Notre conseil : choisissez des formations qui s'inscrivent dans la continuité de votre parcours. Expliquez clairement dans votre lettre de motivation pourquoi cette formation en France est la suite logique de vos études. Si vous changez d'orientation, justifiez-le avec des arguments solides."]
-          },
-          {
-            heading: "Erreur n°2 : Un dossier incomplet ou mal préparé",
-            body: ["Un dossier incomplet est presque systématiquement refusé. Vérifiez trois fois la liste des documents requis sur le site de France-Visas et celui du consulat de votre pays. Chaque document doit être traduit en français par un traducteur assermenté si l'original n'est pas en français ou en anglais.", "Attention particulière au justificatif de ressources financières : vous devez prouver que vous disposez d'au moins 615€ par mois (7 380€ pour une année). Les relevés bancaires doivent être récents (moins d'un mois) et les attestations de prise en charge doivent être accompagnées des justificatifs de revenus de votre garant."]
-          },
-          {
-            heading: "Erreur n°3 : Négliger l'entretien consulaire",
-            body: ["L'entretien est votre moment pour convaincre. Trop d'étudiants arrivent sans préparation, ne connaissent pas bien leur formation, ou donnent des réponses évasives. Le consul évalue votre motivation, votre niveau de français et la cohérence de votre projet.", "Préparez-vous à répondre à ces questions : Pourquoi la France ? Pourquoi cette formation ? Pourquoi cette université ? Quel est votre projet professionnel ? Comment allez-vous financer vos études ? Où allez-vous habiter ? Ayez des réponses précises et convaincantes."]
-          },
-          {
-            heading: "Erreur n°4 : Sous-estimer les délais",
-            body: ["La procédure de visa peut prendre de 2 semaines à 2 mois selon les pays et les périodes. En période de forte affluence (juillet-août), les délais s'allongent considérablement. Commencez vos démarches dès que vous avez votre attestation d'admission.", "Idéalement, déposez votre demande de visa au moins 8 semaines avant la date de début des cours. Cela vous laisse une marge en cas de demande de documents complémentaires."]
-          },
-          {
-            heading: "Erreur n°5 : Négliger la preuve de retour",
-            body: ["Le visa étudiant n'est pas un visa d'immigration. Le consulat veut s'assurer que vous avez l'intention de retourner dans votre pays à la fin de vos études. Si vous ne pouvez pas démontrer d'attaches suffisantes avec votre pays d'origine (famille, biens, perspectives professionnelles), votre dossier risque d'être rejeté.", "Montrez que vous avez un projet de retour : mentionnez dans votre lettre comment vos études en France vous permettront de contribuer au développement de votre pays, joignez des preuves de vos attaches familiales ou professionnelles."]
-          }
-        ],
-        conclusion: "Obtenir un visa étudiant n'est pas une loterie : c'est le résultat d'une préparation minutieuse. Chaque refus laisse une trace dans votre dossier, donc mettez toutes les chances de votre côté dès la première tentative. L'équipe Madaisy Consulting Agency a accompagné des dizaines d'étudiants dans cette procédure avec un taux de réussite de 100%."
       })
     },
     {
