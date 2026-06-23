@@ -70,11 +70,11 @@ export default function QuiSommesNous() {
 
               <div className="mt-10 flex items-center gap-5 p-5 bg-[#fafaf9] rounded-2xl">
                 <Image
-                  src="/marie-desiree-tanoh.jpeg"
+                  src="/marie-desiree-tanoh.webp"
                   alt="Marie-Désirée TANOH"
-                  width={72}
-                  height={72}
-                  className="rounded-full w-[72px] h-[72px] object-cover object-[center_20%] ring-2 ring-white shadow-md"
+                  width={800}
+                  height={1066}
+                  className="rounded-full w-[72px] h-[72px] object-cover object-[center_10%]"
                 />
                 <div>
                   <p className="text-slate-900 text-lg font-semibold">Marie-Désirée TANOH</p>
@@ -89,11 +89,12 @@ export default function QuiSommesNous() {
               <div className="absolute -top-6 -right-6 w-28 h-28 bg-primary/5 rounded-full -z-10" />
               <div className="absolute -bottom-6 -left-6 w-36 h-36 bg-primary/5 rounded-full -z-10" />
               <Image
-                src="/marie-desiree-tanoh.jpeg"
+                src="/marie-desiree-tanoh.webp"
                 alt="Marie-Désirée TANOH"
-                width={600}
-                height={450}
-                className="rounded-2xl shadow-2xl w-full object-cover h-[450px] object-[center_10%]"
+                width={800}
+                height={1066}
+                className="rounded-2xl shadow-2xl w-full h-[480px] lg:h-[520px] object-cover object-[center_10%]"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
             </div>
