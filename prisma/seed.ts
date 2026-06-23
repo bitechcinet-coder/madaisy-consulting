@@ -22,7 +22,6 @@ async function main() {
     { name: 'Sarah M.', role: 'Master en Intelligence Artificielle — France', content: "Grâce à Madaisy, j'ai pu obtenir mon admission et mon visa en un temps record. Leur aide pour l'installation à Lyon a été cruciale pour mon intégration. Ils ont vraiment pensé à tout, du logement aux démarches administratives.", rating: 5 },
     { name: 'Kévin L.', role: 'Bachelor Business International — Canada', content: "Une équipe professionnelle et à l'écoute. Ils ne m'ont pas seulement aidé pour les papiers, ils m'ont vraiment conseillé sur le choix de mon université. Aujourd'hui je suis dans le programme de mes rêves grâce à leur orientation stratégique.", rating: 5 },
     { name: 'Amélie R.', role: 'Médecine — France', content: "Le suivi post-admission est incroyable. Madaisy m'a aidé à trouver mon logement et à gérer toutes mes formalités administratives avant même mon arrivée ! Je me suis sentie épaulée à chaque étape.", rating: 5 },
-    { name: 'Jean-Paul K.', role: 'Master 2 Droit des Affaires — France', content: "Après deux refus de visa, j'étais prêt à abandonner. Madaisy Consulting a repris mon dossier de A à Z. Ils ont su identifier les failles et m'ont préparé aux entretiens. Aujourd'hui, je suis en Master 2 à Paris.", rating: 5 },
   ];
 
   for (const t of temoignages) {
