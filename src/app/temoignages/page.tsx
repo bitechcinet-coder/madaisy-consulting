@@ -28,9 +28,9 @@ export default function Temoignages() {
   }, []);
 
   const stats = [
-    { icon: 'school', value: `${temoignages.length}+`, label: 'Étudiants accompagnés' },
+    { icon: 'school', value: '5', label: 'Étudiants accompagnés' },
     { icon: 'verified', value: '100%', label: 'Taux de réussite' },
-    { icon: 'public', value: '5', label: 'Pays couverts' },
+    { icon: 'public', value: 'France', label: 'Pays couvert' },
   ];
 
   return (

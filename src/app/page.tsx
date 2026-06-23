@@ -94,8 +94,7 @@ export default function Home() {
             </div>
             <div className="hidden md:block h-12 w-px bg-black/10" />
             <p className="text-slate-500 max-w-md italic text-center md:text-left text-base font-light leading-relaxed">
-              &ldquo;Depuis juin 2024, tous nos élèves ont été accompagnés avec succès, de leur
-              admission à leur installation.&rdquo;
+              &ldquo;Depuis juin 2024, 5 étudiants accompagnés avec succès vers Paris, Toulouse et Montpellier.&rdquo;
             </p>
           </div>
         </div>
