@@ -28,9 +28,9 @@ export default function Temoignages() {
   }, []);
 
   const stats = [
-    { icon: 'school', value: '5', label: 'Étudiants accompagnés' },
-    { icon: 'verified', value: '100%', label: 'Taux de réussite' },
-    { icon: 'public', value: 'France', label: 'Pays couvert' },
+    { icon: 'verified', value: '5/5', label: 'Admissions obtenues' },
+    { icon: 'pin_drop', value: '3', label: 'Villes en France' },
+    { icon: 'school', value: '5', label: 'Filières différentes' },
   ];
 
   return (
