@@ -74,7 +74,7 @@ export default function QuiSommesNous() {
                   alt="Marie-Désirée TANOH"
                   width={72}
                   height={72}
-                  className="rounded-full w-[72px] h-[72px] object-cover ring-2 ring-white shadow-md"
+                  className="rounded-full w-[72px] h-[72px] object-contain ring-2 ring-white shadow-md"
                 />
                 <div>
                   <p className="text-slate-900 text-lg font-semibold">Marie-Désirée TANOH</p>
@@ -93,7 +93,7 @@ export default function QuiSommesNous() {
                 alt="Marie-Désirée TANOH"
                 width={600}
                 height={450}
-                className="rounded-2xl shadow-2xl w-full object-cover h-[450px]"
+                className="rounded-2xl shadow-2xl w-full object-contain h-auto max-h-[500px]"
                 priority
               />
             </div>
