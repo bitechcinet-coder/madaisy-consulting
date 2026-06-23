@@ -93,7 +93,7 @@ export default function QuiSommesNous() {
                 alt="Marie-Désirée TANOH"
                 width={600}
                 height={450}
-                className="rounded-2xl shadow-2xl w-full object-cover h-[450px] object-[center_25%]"
+                className="rounded-2xl shadow-2xl w-full object-cover h-[450px] object-[center_15%]"
                 priority
               />
             </div>
