@@ -19,7 +19,7 @@ async function main() {
 
   // ── Témoignages ──
   const temoignages = [
-    { name: 'Sarah M.', role: 'Master en Intelligence Artificielle — France', content: "Grâce à Madaisy, j'ai pu obtenir mon admission et mon visa en un temps record. Leur aide pour l'installation à Lyon a été cruciale pour mon intégration. Ils ont vraiment pensé à tout, du logement aux démarches administratives.", rating: 5 },
+    { name: 'Sarah M.', role: 'Master en Intelligence Artificielle — France', content: "Grâce à Madaisy, j'ai pu obtenir mon admission et mon visa en un temps record. Leur aide pour l'installation à Paris a été cruciale pour mon intégration. Ils ont vraiment pensé à tout, du logement aux démarches administratives.", rating: 5 },
     { name: 'Kévin L.', role: 'Bachelor Business International — France', content: "Une équipe professionnelle et à l'écoute. Ils ne m'ont pas seulement aidé pour les papiers, ils m'ont vraiment conseillé sur le choix de mon université. Aujourd'hui je suis dans le programme de mes rêves grâce à leur orientation stratégique.", rating: 5 },
     { name: 'Amélie R.', role: 'Médecine — France', content: "Le suivi post-admission est incroyable. Madaisy m'a aidé à trouver mon logement et à gérer toutes mes formalités administratives avant même mon arrivée ! Je me suis sentie épaulée à chaque étape.", rating: 5 },
   ];
