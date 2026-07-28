@@ -38,7 +38,17 @@ export async function POST(request: Request) {
       sendEmail({
         to: normalizedEmail,
         subject: 'Bienvenue à la newsletter Madaisy Consulting',
-        html: `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#333"><h2 style="color:#E6050C">Bienvenue chez Madaisy Consulting</h2><p>Bonjour,</p><p>Nous vous confirmons votre inscription à la newsletter de <strong>Madaisy Consulting</strong>.</p><p>Vous recevrez désormais nos actualités, conseils et offres exclusives directement dans votre boîte mail.</p><p style="margin-top:20px">À très bientôt,</p><p><strong>L'équipe Madaisy Consulting</strong></p></div>`,
+        html:
+          '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"></head><body style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#333333">' +
+          '<h2 style="color:#E6050C;font-size:22px">Bienvenue chez Madaisy Consulting</h2>' +
+          '<p style="font-size:16px">Bonjour,</p>' +
+          '<p style="font-size:16px">Nous vous confirmons votre inscription à la newsletter de <strong>Madaisy Consulting Agency</strong>.</p>' +
+          '<p style="font-size:16px">Vous recevrez désormais nos actualités, conseils et offres exclusives directement dans votre boîte mail.</p>' +
+          '<p style="font-size:16px;margin-top:20px">À très bientôt,</p>' +
+          '<p style="font-size:16px"><strong>L\'équipe Madaisy Consulting</strong></p>' +
+          '<hr style="border:none;border-top:1px solid #dddddd;margin:20px 0">' +
+          '<p style="color:#888888;font-size:12px">Si vous souhaitez vous désinscrire, répondez simplement à cet email avec « Désinscription » en objet.</p>' +
+          '</body></html>',
       }).catch((err) => console.error('Erreur envoi email newsletter:', err));
     }
 
