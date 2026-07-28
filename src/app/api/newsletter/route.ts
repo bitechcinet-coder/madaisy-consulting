@@ -56,7 +56,7 @@ export async function POST(request: Request) {
       }).catch((err) => console.error('Erreur envoi email newsletter:', err));
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, debug: { resendKey: !!process.env.RESEND_API_KEY } });
   } catch {
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
