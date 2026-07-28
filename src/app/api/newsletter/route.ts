@@ -35,7 +35,8 @@ export async function POST(request: Request) {
     await prisma.newsletter.create({ data: { email: normalizedEmail } });
 
     // Envoyer un email de bienvenue à l'abonné
-    if (process.env.RESEND_API_KEY) {
+    const hasKey = !!process.env.RESEND_API_KEY;
+    if (hasKey) {
       sendEmail({
         to: normalizedEmail,
         subject: 'Bienvenue à la newsletter Madaisy Consulting',
@@ -56,7 +57,7 @@ export async function POST(request: Request) {
       }).catch((err) => console.error('Erreur envoi email newsletter:', err));
     }
 
-    return NextResponse.json({ success: true, debug: { resendKey: !!process.env.RESEND_API_KEY } });
+    return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
