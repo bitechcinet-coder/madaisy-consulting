@@ -39,6 +39,11 @@ export default function Home() {
       title: 'Installation',
       desc: 'Recherche de logement, démarches de visa et accueil chaleureux sur le sol français.',
     },
+    {
+      num: 4,
+      title: 'Coaching',
+      desc: 'Un accompagnement personnalisé pour reprendre confiance en vous et vous épanouir pleinement.',
+    },
   ];
 
   return (
@@ -140,7 +145,7 @@ export default function Home() {
           </div>
           <div className="relative">
             <div className="absolute top-1/2 left-0 w-full h-px bg-black/5 hidden lg:block -translate-y-1/2" />
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-16 relative z-10">
               {steps.map((s) => (
                 <div key={s.num} className="flex flex-col items-center text-center">
                   <div className="w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-semibold mb-6 ring-[6px] ring-white shadow-lg shadow-primary/15">

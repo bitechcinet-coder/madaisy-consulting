@@ -33,6 +33,14 @@ export default function Services() {
         'Parce que votre réussite ne s\'arrête pas à une admission, nous vous accompagnons jusqu\'à votre installation. Aide au logement, formalités de départ et conseils logistiques pour une transition sereine.',
       checklist: ['Recherche de logement et garanties', 'Formalités d\'accueil et intégration'],
     },
+    {
+      num: '04',
+      icon: 'psychology',
+      title: 'Coaching & Développement personnel',
+      description:
+        'Parce que réussir ses études, c\'est aussi se sentir bien dans sa peau. Nous vous offrons un cadre de coaching personnalisé, pensé pour votre épanouissement.',
+      checklist: ['Reprendre confiance en vous et en votre projet', 'Dépasser vos blocages avant le grand départ', 'Poser des bases solides pour votre réussite'],
+    },
   ];
 
   const avantages = [

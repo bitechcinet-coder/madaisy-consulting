@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api
 
-Sitemap: https://madaisy-consulting.vercel.app/sitemap.xml
+Sitemap: https://madaisy-consulting.com/sitemap.xml
