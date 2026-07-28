@@ -74,7 +74,7 @@ export async function POST(request: Request) {
     // Envoyer une notification par email à l'équipe Madaisy
     if (process.env.RESEND_API_KEY) {
       sendEmail({
-        to: 'md.tanoh@madaisy-consulting.com',
+        to: 'contact@madaisy-consulting.com',
         subject: `Nouveau message de contact : ${subject.trim()}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
