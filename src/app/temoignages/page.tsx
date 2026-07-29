@@ -127,8 +127,8 @@ export default function Temoignages() {
               <div className="flex flex-col gap-6">
                 <h3 className="text-2xl font-black text-slate-900">Votre histoire commence ici</h3>
                 <p className="text-slate-700 text-lg leading-relaxed">
-                  Chaque année, des dizaines d&apos;étudiants nous font confiance pour concrétiser
-                  leur projet d&apos;études en France. Et vous ?
+                  Depuis le début de nos activités, chaque étudiant nous a fait confiance
+                  pour concrétiser son projet d&apos;études en France. Et vous ?
                 </p>
                 <Link href="/contact" className="btn-primary inline-flex items-center gap-2 w-fit">
                   Démarrer mon projet

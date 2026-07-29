@@ -122,7 +122,7 @@ export default function QuiSommesNous() {
               <div>
                 <h3 className="text-slate-900 text-xl font-semibold mb-3">Qualité avant quantité</h3>
                 <p className="text-slate-500 leading-relaxed text-sm font-light">
-                  Chez Madaisy, nous privilégions l&apos;excellence et l&apos;accompagnement
+                  Chez Madaisy Consulting, nous privilégions l&apos;excellence et l&apos;accompagnement
                   personnalisé. Chaque projet bénéficie d&apos;une attention exclusive et d&apos;une
                   analyse profonde pour garantir un succès durable.
                 </p>

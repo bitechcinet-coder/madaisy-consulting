@@ -72,7 +72,7 @@ async function main() {
       title: 'La vie étudiante à Paris : Budget, astuces et bons plans',
       excerpt: "Découvrez comment profiter de la capitale sans vous ruiner : transports, logement, sorties et culture. Le guide complet pour les étudiants.",
       category: 'Lifestyle',
-      author: 'Sarah M.',
+      author: 'Madaisy Team',
       readTime: 8,
       coverImage: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80',
       content: JSON.stringify({
@@ -127,7 +127,7 @@ async function main() {
       title: 'Budget mensuel type pour étudier en France en 2025',
       excerpt: "Estimation réaliste des dépenses mensuelles : logement, nourriture, transport, loisirs. Comparez Paris vs Province et planifiez votre budget sereinement.",
       category: 'Argent',
-      author: 'Sarah M.',
+      author: 'Madaisy Team',
       readTime: 5,
       coverImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
       content: JSON.stringify({
