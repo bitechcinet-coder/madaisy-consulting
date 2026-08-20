@@ -59,6 +59,78 @@
   .section-dark  { @apply bg-bg-dark; }
 }
 
+/* ── Google Translate : suppression TOTALE de la bande ── */
+/* Ancien widget : iframe #goog-te-banner-frame */
+#goog-te-banner-frame,
+.goog-te-banner-frame,
+iframe[id^="goog-te-banner"],
+iframe[src*="translate_a/t"],
+.goog-te-banner {
+  display: none !important;
+}
+/* Nouveau widget (2025+) : iframe avec classes obscures VIpgJd-* */
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+}
+/* Tooltips et popups de traduction */
+.VIpgJd-ZVi9od-xl07Ob-OEVmcd,
+.VIpgJd-ZVi9od-aZ2wEe {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+html.goog-te-banner-open body {
+  top: 0 !important;
+}
+html.goog-te-banner-open header {
+  top: 0 !important;
+}
+/* Évite les débordements du texte traduit (léger, sans sélecteur universel) */
+.skiptranslate {
+  overflow-wrap: break-word;
+}
+/* Masque la bulle d'aide Google */
+#goog-gt-tt {
+  display: none !important;
+}
+.goog-te-spinner-pos,
+.goog-te-spinner,
+.goog-te-spinner svg {
+  display: none !important;
+}
+.goog-te-gadget img {
+  display: none !important;
+}
+.goog-te-gadget-simple {
+  border: none !important;
+  background: transparent !important;
+  font-size: 14px !important;
+}
+.goog-te-gadget {
+  font-family: inherit !important;
+  color: inherit !important;
+}
+.goog-te-gadget span a {
+  color: inherit !important;
+}
+.goog-te-combo {
+  border: 2px solid rgba(0,0,0,0.1) !important;
+  border-radius: 10px !important;
+  padding: 8px 12px !important;
+  background: #fafaf9 !important;
+  font-size: 14px !important;
+  font-family: inherit !important;
+  color: #0f172a !important;
+  outline: none !important;
+}
+.goog-te-combo:focus {
+  border-color: #E6050C !important;
+}
+#goog-gt-tt {
+  z-index: 999999 !important;
+}
+
 /* ── WhatsApp pulse ── */
 @keyframes pulse-whatsapp {
   0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }

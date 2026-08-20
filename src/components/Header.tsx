@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
+import GoogleTranslateWidget from './GoogleTranslateWidget';
 
 const links = [
   { href: '/', label: 'Accueil' },
@@ -35,7 +36,10 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Nav desktop */}
+        {/* Google Translate - TEST LOCAL */}
+        <GoogleTranslateWidget />
+
+        {/* Navigation desktop */}
         <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <Link
